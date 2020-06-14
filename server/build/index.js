@@ -8,6 +8,8 @@ class Server {
     /* constructor */
     constructor() {
         this.app = express_1.default();
+        this.config();
+        this.routes();
     }
     /* config */
     config() {
@@ -18,7 +20,10 @@ class Server {
     }
     /* server listen */
     start() {
-        this.app.listen();
+        this.app.listen(this.app.get('port'), () => {
+            console.log(`server on port 3000 ${this.app.get('port')}`);
+        });
     }
 }
-new Server();
+const server = new Server();
+server.start();
