@@ -2,6 +2,9 @@ import express, {Application} from 'express';
 import indexRoutes from './routes/indexRoutes';
 import moviesRoutes from './routes/moviesRoutes';
 
+import morgan from 'morgan';
+import cors from 'cors';
+
 class Server {
 
         public app: Application;
@@ -14,6 +17,7 @@ class Server {
         /* config */
         config(): void{
             this.app.set('port', process.env.PORT || 3000); /* takes system server by default */
+            this.app.use(morgan('dev'));
         }
         /* routes */
         routes(): void{

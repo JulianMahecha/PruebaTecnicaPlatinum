@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const moviesRoutes_1 = __importDefault(require("./routes/moviesRoutes"));
+const morgan_1 = __importDefault(require("morgan"));
 class Server {
     /* constructor */
     constructor() {
@@ -16,6 +17,7 @@ class Server {
     /* config */
     config() {
         this.app.set('port', process.env.PORT || 3000); /* takes system server by default */
+        this.app.use(morgan_1.default('dev'));
     }
     /* routes */
     routes() {
