@@ -4,6 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
+const moviesRoutes_1 = __importDefault(require("./routes/moviesRoutes"));
 class Server {
     /* constructor */
     constructor() {
@@ -17,6 +19,8 @@ class Server {
     }
     /* routes */
     routes() {
+        this.app.use(indexRoutes_1.default);
+        this.app.use('/api/movies', moviesRoutes_1.default);
     }
     /* server listen */
     start() {
