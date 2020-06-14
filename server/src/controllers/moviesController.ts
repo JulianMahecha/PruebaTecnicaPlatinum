@@ -1,10 +1,13 @@
 /* Movies Controller, who exports its default controller */
 
 import {Request, Response} from 'express'
+import pool from '../database'
+
 
 class MoviesController{
     index(req: Request, res: Response){
-        res.send('Movies')
+        pool.query('DESCRIBE MOVIES');
+        res.json('movies')
     }
 }
 
