@@ -6,9 +6,14 @@ import pool from '../database'
 
 class MoviesController{
     /* Movies List */
-    public list(req: Request, res: Response){
-       
-        res.json({message: 'mavie list'});
+    public async list(req: Request, res: Response){
+        const  movies  = await pool.query('select * from MOVIES');
+        const  genres  = await pool.query('select * from GENRES');
+        res.json({
+            "movies": movies,
+            "genres": genres
+        });
+        
     }
 
     /* Single Movie */

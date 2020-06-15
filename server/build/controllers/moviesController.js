@@ -18,7 +18,14 @@ const database_1 = __importDefault(require("../database"));
 class MoviesController {
     /* Movies List */
     list(req, res) {
-        res.json({ message: 'mavie list' });
+        return __awaiter(this, void 0, void 0, function* () {
+            const movies = yield database_1.default.query('select * from MOVIES');
+            const genres = yield database_1.default.query('select * from GENRES');
+            res.json({
+                "movies": movies,
+                "genres": genres
+            });
+        });
     }
     /* Single Movie */
     getOne(req, res) {
