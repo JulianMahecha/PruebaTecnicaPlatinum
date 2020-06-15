@@ -5,7 +5,7 @@ import pool from '../database'
 
 
 class MoviesController{
-    public index(req: Request, res: Response){
+    public list(req: Request, res: Response){
         pool.query('DESCRIBE MOVIES');
         res.json('movies')
     }

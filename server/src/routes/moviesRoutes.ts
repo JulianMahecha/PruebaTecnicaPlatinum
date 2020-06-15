@@ -9,7 +9,7 @@ class MoviesRoutes {
     }
 
     config(): void{
-        this.router.get('/', moviesController.index); /* Index */
+        this.router.get('/', moviesController.list); /* Movies List */
         this.router.post('/', moviesController.create); /* Creating a movie */
         this.router.delete('/:id', moviesController.delete); /* Deleting a movie */
         this.router.put('/:id', moviesController.update); /* Updating a movie */

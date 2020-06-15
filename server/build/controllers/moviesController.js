@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.moviesController = void 0;
 const database_1 = __importDefault(require("../database"));
 class MoviesController {
-    index(req, res) {
+    list(req, res) {
         database_1.default.query('DESCRIBE MOVIES');
         res.json('movies');
     }

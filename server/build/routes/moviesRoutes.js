@@ -8,7 +8,7 @@ class MoviesRoutes {
         this.config();
     }
     config() {
-        this.router.get('/', moviesController_1.moviesController.index); /* Index */
+        this.router.get('/', moviesController_1.moviesController.list); /* Movies List */
         this.router.post('/', moviesController_1.moviesController.create); /* Creating a movie */
         this.router.delete('/:id', moviesController_1.moviesController.delete); /* Deleting a movie */
         this.router.put('/:id', moviesController_1.moviesController.update); /* Updating a movie */
