@@ -1,1 +1,18 @@
-<p>movies-list works!</p>
+<div class="col-md-4" *ngFor="let movie of movies">
+    <div class="card text-center">
+      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+        {{movie.title}}
+        <!-- <button class="btn btn-danger" (click)="deleteMovie(movie.id)"> -->
+          <i class="far fa-trash-alt"></i>
+        <!-- </button> -->
+      </div>
+      <img class="card-img-top" [src]="movie.image">
+      <div class="card-body">
+        <p>{{movie.description}}</p>
+        <p>Created At {{movie.created_at | date: 'yyyy-MM-dd'}}</p>
+        <a [routerLink]="['/movies/edit', movie.id]" class="btn btn-info btn-block">
+          EDIT MOVIE
+        </a>
+      </div>
+    </div>
+  </div>
