@@ -45,6 +45,10 @@ export class MovieFormComponent implements OnInit {
   }
 
   saveNewMovie(){
+
+    delete this.movie.created_at;
+    delete this.movie.id;
+
     this.moviesService.saveMovie(this.movie)
     .subscribe(
       res => {

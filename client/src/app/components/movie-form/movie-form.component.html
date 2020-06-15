@@ -10,6 +10,7 @@
               placeholder="Title"
               class="form-control"
               autofocus
+              required
             />
           </div>
           <div class="form-group">
@@ -28,6 +29,7 @@
               [(ngModel)]="movie.image"
               placeholder="Image"
               class="form-control"
+              required
             />
           </div>
           <select class="form-control" name="genre"  [(ngModel)]="movie.id_genre" required>
@@ -52,11 +54,11 @@
         class="card-img-top"
       />
       <h3>
-        {{ movie.id }}. {{ movie.title == "" ? "Game Title" : movie.title }}
+        {{ movie.title == "" ? "Movie Title" : movie.title }}
       </h3>
       <p>
         {{
-          movie.description == "" ? "Write your Descrition" : movie.description
+          movie.description == "" ? "Write your Description" : movie.description
         }}
       </p>
       <p>{{ movie.created_at | date: "yyyy-MM-dd" }}</p>
