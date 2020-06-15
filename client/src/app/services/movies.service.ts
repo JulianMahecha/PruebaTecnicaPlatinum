@@ -13,6 +13,6 @@ export class MoviesService {
   }
 
   getMovies(){
-    return this.http.get('')
+    return this.http.get(`${this.API_URI}/movies`);
   }
 }
