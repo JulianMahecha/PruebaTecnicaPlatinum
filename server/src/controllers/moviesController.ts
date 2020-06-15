@@ -7,8 +7,8 @@ import pool from '../database'
 class MoviesController{
     /* Movies List */
     public async list(req: Request, res: Response){
-        const  movies  = await pool.query('select * from MOVIES');
-        const  genres  = await pool.query('select * from GENRES');
+        const  movies  = await pool.query('select * from MOVIES'); /* Geting Movies */
+        const  genres  = await pool.query('select * from GENRES'); /* Geting Genres */
         res.json({
             "movies": movies,
             "genres": genres
@@ -17,9 +17,11 @@ class MoviesController{
     }
 
     /* Single Movie */
-    public getOne(req: Request, res: Response){
-        pool.query('DESCRIBE MOVIES');
-        res.json('single movie')
+    public async getOne(req: Request, res: Response):Promise<void>{
+        const { id } = req.params;
+        const  movie  = await pool.query('select movies.*, genres.name as genero from MOVIES inner join genres ON movies.id_genre = genres.id where movies.id = ?', [id]); /* Geting Movies */
+        console.log(movie);
+        res.json(movie);
     }
 
     /* Methods */

@@ -19,8 +19,8 @@ class MoviesController {
     /* Movies List */
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const movies = yield database_1.default.query('select * from MOVIES');
-            const genres = yield database_1.default.query('select * from GENRES');
+            const movies = yield database_1.default.query('select * from MOVIES'); /* Geting Movies */
+            const genres = yield database_1.default.query('select * from GENRES'); /* Geting Genres */
             res.json({
                 "movies": movies,
                 "genres": genres
@@ -29,8 +29,12 @@ class MoviesController {
     }
     /* Single Movie */
     getOne(req, res) {
-        database_1.default.query('DESCRIBE MOVIES');
-        res.json('single movie');
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const movie = yield database_1.default.query('select movies.*, genres.name as genero from MOVIES inner join genres ON movies.id_genre = genres.id where movies.id = ?', [id]); /* Geting Movies */
+            console.log(movie);
+            res.json(movie);
+        });
     }
     /* Methods */
     create(req, res) {
