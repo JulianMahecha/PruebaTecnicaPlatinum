@@ -11,5 +11,14 @@ class MoviesController {
         database_1.default.query('DESCRIBE MOVIES');
         res.json('movies');
     }
+    create(req, res) {
+        res.json({ text: 'creating a movie' });
+    }
+    delete(req, res) {
+        res.json({ text: 'deleting a movie' });
+    }
+    update(req, res) {
+        res.json({ text: 'updating a movie' });
+    }
 }
 exports.moviesController = new MoviesController();
