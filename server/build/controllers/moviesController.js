@@ -19,7 +19,7 @@ class MoviesController {
     /* Movies List */
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const movies = yield database_1.default.query('select * from MOVIES'); /* Geting Movies */
+            const movies = yield database_1.default.query('select m.title, m.description as description, m.image, genres.name as genero from MOVIES m inner join genres on m.id_genre = genres.id'); /* Geting Movies */
             const genres = yield database_1.default.query('select * from GENRES'); /* Geting Genres */
             res.json({
                 "movies": movies,
