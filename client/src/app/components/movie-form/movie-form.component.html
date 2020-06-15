@@ -1,1 +1,65 @@
-<p>movie-form works!</p>
+<div class="col-md-4 offset-md-2">
+    <div class="card">
+      <div class="card-body">
+        <form action="">
+          <div class="form-group">
+            <input
+              type="text"
+              name="title"
+              [(ngModel)]="movie.title"
+              placeholder="Title"
+              class="form-control"
+              autofocus
+            />
+          </div>
+          <div class="form-group">
+            <textarea
+              name="description"
+              [(ngModel)]="movie.description"
+              rows="2"
+              placeholder="Description"
+              class="form-control"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <input
+              type="url"
+              name="image URL"
+              [(ngModel)]="movie.image"
+              placeholder="Image"
+              class="form-control"
+            />
+          </div>
+          <select class="form-control" name="genre"  [(ngModel)]="movie.id_genre" required>
+            <option *ngFor="let genre of genres" [ngValue]="genre.id"> {{genre.name}} </option>
+          </select>
+          <button
+            class="btn btn-success btn-block"
+            (click)="saveNewMovie()"
+          >
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card card-body text-center">
+      <img
+        [src]="movie.image == '' ? '/assets/noimage.png' : movie.image"
+        alt="No Image"
+        class="card-img-top"
+      />
+      <h3>
+        {{ movie.id }}. {{ movie.title == "" ? "Game Title" : movie.title }}
+      </h3>
+      <p>
+        {{
+          movie.description == "" ? "Write your Descrition" : movie.description
+        }}
+      </p>
+      <p>{{ movie.created_at | date: "yyyy-MM-dd" }}</p>
+    </div>
+  </div>
+  

@@ -7,7 +7,7 @@ import pool from '../database'
 class MoviesController{
     /* Movies List */
     public async list(req: Request, res: Response){
-        const  movies  = await pool.query('select m.title, m.description as description, m.image, genres.name as genero from MOVIES m inner join genres on m.id_genre = genres.id'); /* Geting Movies */
+        const  movies  = await pool.query('select m.id, m.title, m.description as description, m.image, genres.name as genero from MOVIES m inner join genres on m.id_genre = genres.id'); /* Geting Movies */
         const  genres  = await pool.query('select * from GENRES'); /* Geting Genres */
         res.json({
             "movies": movies,

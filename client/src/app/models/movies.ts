@@ -3,7 +3,7 @@ export interface Movie {
     title?: string;
     description?: string;
     image?: string;
-    genre?: number;
+    id_genre?: number;
     created_at?: Date;
 
 }
