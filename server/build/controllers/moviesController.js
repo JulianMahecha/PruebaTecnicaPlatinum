@@ -31,12 +31,17 @@ class MoviesController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const movie = yield database_1.default.query('select movies.*, genres.name as genero from MOVIES inner join genres ON movies.id_genre = genres.id where movies.id = ?', [id]); /* Geting Movies */
-            console.log(movie);
-            res.json(movie);
+            const movie = yield database_1.default.query('select movies.*, genres.name as genero from MOVIES inner join genres ON movies.id_genre = genres.id where movies.id = ?', [id]); /* Geting Movie */
+            if (movie.length > 0) {
+                return res.json(movie[0]);
+            }
+            else {
+                res.status(404).json({ text: "The Movie Doesnt Exists" });
+            }
         });
     }
     /* Methods */
+    /* Create Method */
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield database_1.default.query('INSERT INTO MOVIES set ?', [req.body]); /* Inserting request info into Movies Table on DB */
@@ -45,10 +50,18 @@ class MoviesController {
         });
     }
     delete(req, res) {
-        res.json({ text: 'deleting a movie' });
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            yield database_1.default.query('DELETE FROM movies WHERE id = ?', [id]);
+            res.json({ text: "The movie was deleted" });
+        });
     }
     update(req, res) {
-        res.json({ text: 'updating a movie' });
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            yield database_1.default.query('UPDATE movies set ? WHERE id = ?', [req.body, id]);
+            res.json({ message: "The movie was updated" });
+        });
     }
 }
 exports.moviesController = new MoviesController();
