@@ -5,5 +5,6 @@ export interface Movie {
     image?: string;
     id_genre?: number;
     created_at?: Date;
+    genero?: string;
 
 }

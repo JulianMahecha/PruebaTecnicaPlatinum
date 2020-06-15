@@ -35,7 +35,7 @@
           </select>
           <button
             class="btn btn-success btn-block"
-            (click)="saveNewMovie()"
+            (click)="edit ? updateMovie() : saveNewMovie()"
           >
             Save
           </button>

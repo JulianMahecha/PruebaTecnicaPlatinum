@@ -29,8 +29,12 @@ export class MovieFormComponent implements OnInit {
     description: '',
   }
 
+  edit: boolean = false;
+
   moviesGeneral: any = [];
   genres: any = [];
+
+
 
   constructor(private moviesService: MoviesService, private router : Router, private activatedRoute: ActivatedRoute) { 
 
@@ -44,6 +48,7 @@ export class MovieFormComponent implements OnInit {
       .subscribe(
         res =>{
           this.movie = res;
+          this.edit = true;
         },
         err =>{}
       )
@@ -75,4 +80,18 @@ export class MovieFormComponent implements OnInit {
     );
   }
 
+  updateMovie(){
+    console.log(this.movie);
+    delete this.movie.genero;
+    this.moviesService.updateMovie(this.movie.id, this.movie)
+    .subscribe(
+      res => {
+        console.log(res);
+        this.router.navigate(['/movies']);
+      },
+      err =>{
+        console.log(err);
+      }
+    );
+  }
 }
