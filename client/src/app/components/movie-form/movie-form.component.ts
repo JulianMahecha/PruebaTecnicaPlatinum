@@ -2,6 +2,9 @@ import { Component, OnInit, Host, HostBinding } from '@angular/core';
 import { Movie } from 'src/app/models/movies';
 import { MoviesService } from '../../services/movies.service'
 import { Genre } from 'src/app/models/genre';
+import { ActivatedRoute, Router } from '@angular/router'
+
+
 
 @Component({
   selector: 'app-movie-form',
@@ -29,16 +32,27 @@ export class MovieFormComponent implements OnInit {
   moviesGeneral: any = [];
   genres: any = [];
 
-  constructor(private moviesService: MoviesService) { 
+  constructor(private moviesService: MoviesService, private router : Router, private activatedRoute: ActivatedRoute) { 
 
   }
 
   ngOnInit(): void {
+
+    const params = this.activatedRoute.snapshot.params;
+    if(params.id){
+      this.moviesService.getMovie(params.id)
+      .subscribe(
+        res =>{
+          this.movie = res;
+        },
+        err =>{}
+      )
+    }
+
     this.moviesService.getMovies().subscribe(
       res => {
         this.moviesGeneral = res;
         this.genres = this.moviesGeneral.genres;
-        console.log(this.genres);
       },
       err => console.log(err)
     )
@@ -53,6 +67,7 @@ export class MovieFormComponent implements OnInit {
     .subscribe(
       res => {
         console.log(res);
+        this.router.navigate(['/movies']);
       },
       err =>{
         console.log(err);

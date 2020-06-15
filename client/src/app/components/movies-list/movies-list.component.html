@@ -4,7 +4,7 @@
       class="card-header bg-dark text-white d-flex justify-content-between align-items-center"
     >
       {{ movie.title }}
-      <button class="btn btn-danger">
+      <button class="btn btn-danger" (click)="deleteMovie(movie.id)">
       <i class="far fa-trash-alt"></i>
       </button>
     </div>
